@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Pleos build only (2026-10-21): Pleos Connect SDK permissions. The SDK libraries add their own service-binding
+     permissions; these are the data permissions the car grants per app (Pleos App Market review). -->
+<manifest xmlns:android="http://schemas.android.com/apk/res/android">
+    <uses-permission android:name="pleos.car.permission.FUSED_LOCATION" />
+    <!-- Voice guide (2026-10-21): the car's on-device speech engine. -->
+    <uses-permission android:name="pleos.car.permission.TTS_SERVICE" />
+    <uses-permission android:name="pleos.car.permission.STT_SERVICE" />
+    <!-- The road's radio (2026-10-21): reads the navigation's destination and arrival (Pleos NaviHelper). -->
+    <uses-permission android:name="pleos.car.permission.NAVI_ROUTE" />
+    <!-- Driving or parked (2026-10-21): the gear (Pleos Vehicle) shortens the voice guide while the car moves. -->
+    <uses-permission android:name="pleos.car.permission.CAR_DRIVE" />
+    <application>
+        <receiver android:name=".pleos.GleoActions" android:exported="true">
+            <intent-filter>
+                <action android:name="DRIFT_NEXT_STATION" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+            <intent-filter>
+                <action android:name="SET_DRIFT_COURSE" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+            <intent-filter>
+                <action android:name="SAVE_CURRENT_STATION" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </receiver>
+    </application>
+</manifest>

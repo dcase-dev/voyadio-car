@@ -1,0 +1,43 @@
+{
+  "packageName": "${applicationId}",
+  "appDescription": "Voyadio plays live radio from around the world. Instead of a channel list, it drifts from station to station along a course the driver sets: a country, a language, or a kind of program.",
+  "invokeWord": "보야디오",
+  "version": "${versionName}",
+  "actionCalls": [
+    {
+      "type": "function",
+      "function": {
+        "name": "DRIFT_NEXT_STATION",
+        "description": "Move on to a live radio station from another place in the world, along the current drift course.",
+        "parameters": { "type": "object", "properties": {}, "required": [] },
+        "component": "service"
+      }
+    },
+    {
+      "type": "function",
+      "function": {
+        "name": "SET_DRIFT_COURSE",
+        "description": "Change the drift course so the radio plays live stations from one country, in one language, or of one kind of program, and start playing.",
+        "parameters": {
+          "type": "object",
+          "properties": {
+            "countryCode": { "type": "string", "description": "ISO 3166-1 alpha-2 code of the country the stations should broadcast from." },
+            "languageCode": { "type": "string", "enum": ["en", "zh", "ja", "ko", "es", "fr", "de", "pt"], "description": "ISO 639-1 code of the language the stations should broadcast in." },
+            "programType": { "type": "string", "enum": ["public_radio", "podcasts", "popular_music", "classical", "asmr"], "description": "Kind of programs the stations should play." }
+          },
+          "required": []
+        },
+        "component": "service"
+      }
+    },
+    {
+      "type": "function",
+      "function": {
+        "name": "SAVE_CURRENT_STATION",
+        "description": "Save the radio station playing now to the user's favorite stations.",
+        "parameters": { "type": "object", "properties": {}, "required": [] },
+        "component": "service"
+      }
+    }
+  ]
+}

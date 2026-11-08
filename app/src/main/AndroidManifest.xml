@@ -1,0 +1,47 @@
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.car.permission.CAR_ENERGY" />
+    <uses-permission android:name="android.car.permission.CAR_ENERGY_PORTS" />
+    <uses-permission android:name="android.car.permission.CAR_INFO" />
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE_MEDIA_PLAYBACK" />
+    <uses-feature android:name="android.hardware.type.automotive" android:required="true" />
+    <uses-feature android:name="android.hardware.touchscreen" android:required="false" />
+    <application android:name=".VoyadioApplication" android:label="@string/app_name"
+        android:icon="@drawable/ic_radio" android:theme="@style/AppTheme"
+        android:allowBackup="false" android:dataExtractionRules="@xml/data_extraction_rules"
+        android:usesCleartextTraffic="true" android:appCategory="audio"
+        android:supportsRtl="true">
+        <uses-library android:name="android.car" android:required="false" />
+        <meta-data android:name="com.android.automotive" android:resource="@xml/automotive_app_desc" />
+        <!-- Parked-only surface. Never claim distractionOptimized for this activity. -->
+        <!-- Landscape only (PO 2026-10-21): the layout is built for wide car displays; on a phone it otherwise
+             follows auto-rotate into portrait and clips. sensorLandscape still allows a 180° flip.
+             DiscouragedApi: Android 16+ ignores the lock on large screens (sw≥600dp) — fine, car displays are
+             already landscape; phones still honour it. -->
+        <activity android:name=".CampActivity" android:exported="true"
+            android:screenOrientation="sensorLandscape" tools:ignore="DiscouragedApi">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <service android:name=".RadioService" android:exported="true" android:foregroundServiceType="mediaPlayback">
+            <intent-filter>
+                <action android:name="androidx.media3.session.MediaLibraryService" />
+                <action android:name="android.media.browse.MediaBrowserService" />
+            </intent-filter>
+            <!-- We also have a launcher activity (the camp screen). Without this opt-in the car's media center skips
+                 the service as a "non media template app" — Pleos Connect logged exactly that and left its media card
+                 empty (2026-10-21). Same tag AOSP Bluetooth puts on its MediaBrowserService. -->
+            <meta-data android:name="androidx.car.app.launchable" android:value="true" />
+        </service>
+        <receiver android:name="androidx.media3.session.MediaButtonReceiver" android:exported="true">
+            <intent-filter><action android:name="android.intent.action.MEDIA_BUTTON" /></intent-filter>
+        </receiver>
+    </application>
+</manifest>

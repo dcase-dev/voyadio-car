@@ -3,6 +3,17 @@
 운전대 버튼 한 번이면 지구 반대편의 라디오가 흐르고, 국경을 넘으면 그 나라의 소리로 바뀝니다.
 달리는 도로 위에서 귀로 세계를 여행하는 Pleos 차량용 라디오입니다(208개 나라·지역, 방송 9,170개).
 
+### 시연 영상
+**60초 — 하루의 드라이브(실사 장면 + 앱 화면)**
+
+https://github.com/user-attachments/assets/abb2223e-4881-4241-ab7c-ce40d8237352
+
+
+**30초 — Pleos 가상 차량 실제 화면**
+
+https://github.com/user-attachments/assets/3cfd5335-41a4-4600-8240-318133125b2b
+
+
 - 언어: Kotlin · Android Automotive OS 전용 앱(AndroidX Media3)
 - Pleos Connect SDK: Vehicle · TextToSpeech · SpeechToText · NaviHelper · FusedLocation + Gleo 앱 스키마
 - 휴대폰 앱과 같은 서버·방송 목록·계정을 씁니다(차 앱 단독으로도 로그인 없이 바로 사용)

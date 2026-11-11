@@ -27,6 +27,7 @@ https://github.com/user-attachments/assets/3cfd5335-41a4-4600-8240-318133125b2b
 | 파일 | [`apk/디케이스_Voyadio_release.apk`](apk/) — Pleos 빌드 · 출시 서명 release |
 | 패키지 · 버전 | `com.voyadio.automotive` · 0.1.0 |
 | 권장 환경 | **Pleos Connect 가상 차량 v2.1.0**(Android API 34) + Virtual Console |
+| 개발·시험 화면 규격 | **2560 × 1440 (가로) · 160dpi** — Pleos Connect v2.1.0 가상 차량 기본값 |
 | 그 밖의 환경 | 일반 Android Automotive 에뮬레이터(API 29+)에서도 실행됨 — Pleos 기능(기어·차 목소리·내비·위치)만 조용히 꺼짐 |
 | 필요 조건 | 인터넷 연결(라디오 소리는 각 방송국에서 직접 받음) · 로그인 불필요 |
 
